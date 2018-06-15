@@ -9,6 +9,41 @@ html, body{
 
 
 
+
+/*
+	Login
+*/
+#formLogin{
+	margin:50px auto 0 auto;
+	width: 250px;
+	background-color: #ddd;
+	padding: 20px;
+	border-radius: 6px;
+}
+#formLogin label{
+	display: block;
+	margin-bottom: 10px;
+}
+#formLogin strong{
+	display: block;
+	margin-bottom: 5px;
+}
+#formLogin input{
+	width: 100%;
+	box-sizing: border-box;
+	padding: 5px;
+	font-size: 16px;
+	background-color: #f7f7f7;
+	border: 0;
+}
+#formLogin button{
+	border: 0;
+	cursor: pointer;
+	font-size: 16px;
+}
+
+
+
 /*
 	Listar
 */
@@ -42,7 +77,7 @@ table#tabela tbody tr td{
 	text-align: center;
 	padding: 20px;
 }
-.btn-edit, .btn-del, .btn-add, .btn-back{
+.btn-edit, .btn-del, .btn-add, .btn-back, .btn-go{
 	display: inline-block;
 	text-decoration: none;
 	color: #FFF;
@@ -62,6 +97,9 @@ table#tabela tbody tr td{
 	margin-left: 10px;
 	background-color: white;
 	color: #ccc;
+}
+.btn-go{
+	background-color: blue;
 }
 .msg-sucesso{
 	width: 800px;
@@ -94,6 +132,7 @@ table#tabela tbody tr td{
 	width: 100%;
 	padding: 5px;
 	font-size: 16px;
+	box-sizing: border-box;
 }
 #formAdd button{
 	border: 0;

@@ -1,5 +1,15 @@
 <?php 
 	include "config.php";
+
+	session_start();
+
+	if(!isset($_SESSION["email"])):
+		session_destroy();
+
+		unset($_SESSION["email"]);
+
+		header("Location: login.php");
+	endif;
 ?>
 <!DOCTYPE html>
 <html lang="pt-br">
@@ -9,6 +19,8 @@
 	<link rel="stylesheet" href="css/estilo.css?v=<?= time(); ?>">
 </head>
 <body>
+	<?= $_SESSION["email"]; ?>
+	<a href="sair.php">Sair</a>
 	<h1>CRUD</h1>
 	<div class="bloco-botao">
 		<a href="adicionar.php" class="btn-add">Adicionar</a>
