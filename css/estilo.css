@@ -101,9 +101,8 @@ table#tabela tbody tr td{
 .btn-go{
 	background-color: blue;
 }
-.msg-sucesso{
+.msg-sucesso, .msg-error{
 	width: 800px;
-	background-color: green;
 	display: block;
 	padding: 10px;
 	color: #FFF;
@@ -111,7 +110,12 @@ table#tabela tbody tr td{
 	margin: 20px auto;
 	border-radius: 6px;
 }
-
+.msg-sucesso{
+	background-color: green;
+}
+.msg-error{
+	background-color: red;
+}
 
 
 /*

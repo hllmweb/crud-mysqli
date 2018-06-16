@@ -4,6 +4,7 @@
 	if($_POST && $_GET["acao"] == "adicionar"):
 		$nome 		= $_POST["nome"];
 		$email 		= $_POST["email"];
+		//inserir a validação do campo senha
 		$telefone 	= $_POST["telefone"];
 		$cpf 		= $_POST["cpf"];
 		$endereco 	= $_POST["endereco"];
@@ -49,7 +50,7 @@
 		</label>
 		<div class="bloco-botao">
 			<button type="submit" class="btn-add">Enviar</button>
-			
+
 		</div>
 	</form>
 	

@@ -3,10 +3,11 @@
 
 	session_start();
 
-	if(!isset($_SESSION["email"])):
+	if(!isset($_SESSION["email"]) && !isset($_SESSION["senha"])):
 		session_destroy();
 
 		unset($_SESSION["email"]);
+		unset($_SESSION["senha"]);
 
 		header("Location: login.php");
 	endif;
@@ -21,6 +22,12 @@
 <body>
 	<?= $_SESSION["email"]; ?>
 	<a href="sair.php">Sair</a>
+	
+	<form action="busca.php" method="POST" id="formSearch">
+		<input type="text" name="busca" placeholder="Pesquisar..."> 
+		<button type="submit">Buscar</button>
+	</form>
+
 	<h1>CRUD</h1>
 	<div class="bloco-botao">
 		<a href="adicionar.php" class="btn-add">Adicionar</a>

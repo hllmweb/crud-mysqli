@@ -3,8 +3,9 @@
 
 	if($_POST && $_GET["acao"] == "acessar"):
 		$email 	= $_POST["email"];
+		$senha  = md5($_POST["senha"]);
 
-		$query  = "SELECT * FROM usuarios WHERE email = '$email'";
+		$query  = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
 		$result = $mysqli->query($query);
 
 		
@@ -12,15 +13,20 @@
 			session_start();
 
 			$_SESSION["email"] = $email;
+			$_SESSION["senha"] = $senha;
 			header("Location: index.php");
 		else:
 			session_destroy();
 
 			unset($_SESSION["email"]);
+			unset($_SESSION["senha"]);
 			header("Location: login.php?acao=error");
 		endif;
 	endif;
 
+	if(@$_GET["acao"] == "error"):
+		echo "<div class='msg-error'>Dados incorreto!</div>";
+	endif;
 
 ?>
 <!DOCTYPE html>
