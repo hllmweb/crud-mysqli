@@ -9,6 +9,7 @@
 	
 		$nome 		= $row["nome"];
 		$email  	= $row["email"];
+		$senha 		= $row["senha"];
 		$telefone 	= $row["telefone"];
 		$cpf 	  	= $row["cpf"];
 		$endereco 	= $row["endereco"];
@@ -16,13 +17,15 @@
 	if(@$_GET["acao"] == "editar"):
 		$nome 		= utf8_decode($_POST["nome"]);
 		$email 		= $_POST["email"];
+		$senha 		= ($_POST["senha"] != $senha) ? md5($_POST["senha"]) : $_POST["senha"];
 		$telefone 	= $_POST["telefone"];
 		$cpf 		= $_POST["cpf"];
 		$endereco   = utf8_decode($_POST["endereco"]);
 
 
-		$query = "UPDATE usuarios SET nome='$nome', email='$email', telefone='$telefone', cpf='$cpf', endereco='$endereco' WHERE id={$id_usuario}";
+		$query = "UPDATE usuarios SET nome='$nome', email='$email', senha='$senha' ,telefone='$telefone', cpf='$cpf', endereco='$endereco' WHERE id={$id_usuario}";
 		$result = $mysqli->query($query);
+
 
 		if($result === true):
 			echo "<div class='msg-sucesso'>Usuário atualizado com sucesso! <a href='index.php' class='btn-back'>VOLTAR</a></div>";
@@ -46,6 +49,10 @@
 		<label for="email">
 			<strong>E-Mail</strong>
 			<input type="text" name="email" value="<?= $email; ?>" required>
+		</label>
+		<label for="senha">
+			<strong>Senha</strong>
+			<input type="password" name="senha" value="<?= $senha; ?>" required>
 		</label>
 		<label for="telefone">
 			<strong>Telefone</strong>

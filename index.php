@@ -27,7 +27,7 @@
 		<input type="text" name="busca" placeholder="Pesquisar..."> 
 		<button type="submit">Buscar</button>
 	</form>
-
+	
 	<h1>CRUD</h1>
 	<div class="bloco-botao">
 		<a href="adicionar.php" class="btn-add">Adicionar</a>
@@ -35,6 +35,7 @@
 	<table id="tabela">
 		<thead>
 			<tr>
+				<th><strong>ID</strong></th>
 				<th><strong>NOME</strong></th>
 				<th><strong>E-MAIL</strong></th>
 				<th><strong>CPF</strong></th>
@@ -49,6 +50,7 @@
 				while($row = $result->fetch_array()):
 			?>
 			<tr>
+				<td><?= $row["id"]; ?></td>
 				<td><?= utf8_encode($row["nome"]); ?></td>
 				<td><?= $row["email"]; ?></td>
 				<td><?= $row["cpf"]; ?></td>
