@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="css/estilo.css?v=<?= time(); ?>">
 </head>
 <body>
+	<?= $_SESSION["email"]; ?>
 	<a href="sair.php">Sair</a>
 	
 	<form action="busca.php" method="POST" id="formSearch">
@@ -43,6 +44,7 @@
 		</thead>
 		<tbody>
 			<?php 
+			if($result->num_rows > 0):
 				while($row = $result->fetch_array()):
 			?>
 			<tr>
@@ -57,6 +59,13 @@
 			</tr>
 			<?php 
 				endwhile;
+			else:
+			?>
+			<tr>
+				<td colspan="5">Essa informação não existe no banco de dados :(</td>
+			</tr>
+			<?php 	
+			endif;
 			?>
 		</tbody>
 	</table>
