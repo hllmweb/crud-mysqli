@@ -3,24 +3,25 @@
 
 	if($_POST && $_GET["acao"] == "acessar"):
 		$email 	= $_POST["email"];
-		$senha  = md5($_POST["senha"]);
 
-		$query  = "SELECT * FROM usuarios WHERE email = '$email' AND senha = '$senha'";
+		$query  = "SELECT * FROM usuarios WHERE email = '$email'";
 		$result = $mysqli->query($query);
-
+		$row = $result->fetch_array();
 		
 		if($result->num_rows == 1):
-			session_start();
-
-			$_SESSION["email"] = $email;
-			$_SESSION["senha"] = $senha;
-			header("Location: index.php");
+			
+			$email_cliente = $row["email"];
+			$senha = $row["senha"];
+			//com base nessas informações, posso criar uma outra página onde o usuário dono do email em questão irá poder modificar a senha
+			$email = mail($email_cliente, "Dados de acesso", "Senha: {$senha}");
+			if($email):
+				echo "<div class='msg-sucesso'>E-Mail Enviado com Sucesso!</div>";
+			
+			endif;
+			#header("Location: index.php");
 		else:
-			session_destroy();
 
-			unset($_SESSION["email"]);
-			unset($_SESSION["senha"]);
-			header("Location: login.php?acao=error");
+			header("Location: esqueceu-senha.php?acao=error");
 		endif;
 	endif;
 
@@ -37,19 +38,15 @@
 	<link rel="stylesheet" href="css/estilo.css?v=<?= time(); ?>">
 </head>
 <body>
-	<form action="login.php?acao=acessar" method="POST" id="formLogin">
+	<form action="esqueceu-senha.php?acao=acessar" method="POST" id="formLogin">
 		<label for="email">
 			<strong>E-Mail</strong>
 			<input type="text" name="email" placeholder="E-Mail" required>
 		</label>
-		<label for="senha">
-			<strong>Senha</strong>
-			<input type="password" name="senha" placeholder="Senha" required>
-		</label>	
 		<button type="submit" class="btn-go">Entrar</button>
 	</form>
 	<div class="bloco-botao">
-		<a href="esqueceu-senha.php">Esqueceu a senha?</a>
+		<a href="javascript.void(0)" onclick="window.history.back();">Voltar</a>
 	</div>
 </body>
 </html>

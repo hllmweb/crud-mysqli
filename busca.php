@@ -2,14 +2,18 @@
 	include "config.php";
 	session_start();
 
+	if(!isset($_SESSION["email"]) && !isset($_SESSION["senha"])):
+		session_destroy();
+
+		unset($_SESSION["email"],$_SESSION["senha"]);
+		header("Location: login.php?acao=error");
+	endif;
 
 
 	$busca = $_POST["busca"];
 
 	$query = "SELECT * FROM usuarios WHERE nome LIKE '%$busca%'";
 	$result = $mysqli->query($query);
-
-
 
 ?>
 <!DOCTYPE html>
@@ -27,6 +31,7 @@
 		<input type="text" name="busca" placeholder="Pesquisar..."> 
 		<button type="submit">Buscar</button>
 	</form>
+	<a href="index.php">Início</a>
 	
 	<h1>CRUD</h1>
 	<div class="bloco-botao">
