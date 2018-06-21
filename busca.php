@@ -8,6 +8,7 @@
 		unset($_SESSION["email"],$_SESSION["senha"]);
 		header("Location: login.php?acao=error");
 	endif;
+	
 
 
 	$busca = $_POST["busca"];
