@@ -2,7 +2,7 @@
 	include "config.php";
 
 	if($_POST && $_GET["acao"] == "adicionar"):
-		$nome 		= $_POST["nome"];
+		/*$nome 		= $_POST["nome"];
 		$email 		= $_POST["email"];
 		//inserir a validação do campo senha
 		$telefone 	= $_POST["telefone"];
@@ -14,7 +14,12 @@
 
 		if($result === true):
 			echo "<div class='msg-sucesso'>Dados cadastrado com sucesso! <a href='index.php' class='btn-back'>VOLTAR</a></div>";
-		endif;
+		endif;*/
+
+		$imagem = $_FILES["anexo"];
+		echo $imagem["tmp_name"]."<br>";
+		echo $imagem["name"];
+		move_uploaded_file($imagem["tmp_name"],"arquivos/".$imagem["name"]);
 
 	endif;
 ?>
@@ -27,7 +32,11 @@
 </head>
 <body>
 	<h1>CRUD - Adicionar</h1>
-	<form action="adicionar.php?acao=adicionar" method="POST" id="formAdd">
+	<form action="adicionar.php?acao=adicionar" method="POST" id="formAdd" enctype="multipart/form-data">
+		<label for="imagem">
+			<strong>Imagem</strong>
+			<input type="file" name="anexo">
+		</label>
 		<label for="nome">
 			<strong>Nome</strong>
 			<input type="text" name="nome" placeholder="Digite o Nome" required>
@@ -50,7 +59,6 @@
 		</label>
 		<div class="bloco-botao">
 			<button type="submit" class="btn-add">Enviar</button>
-
 		</div>
 	</form>
 	
